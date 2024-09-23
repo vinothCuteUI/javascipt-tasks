@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+
+<script>
+    //1. Write a JavaScript function to check whether an `input` is an array or not.
+    function is_array(a){
+        if(toString.call(a) == "[object Array]") {
+            return true
+        }else{
+            return false
+        }
+    }
+    console.log(is_array("str"))
+    console.log(is_array([1, 2, 3]))
+
+    //Write a JavaScript program that accepts a number as input and inserts dashes (-) between each even number. For example if you accept 025468 the output should be 0-254-6-8.
+
+    function insertDash(a){
+        let str = String(a).split("");
+        let newArr = []
+        console.log(str)
+        for(let i = 0; i < str.length; i++){
+            if((str[i] % 2 == 0) && (str[i+1] % 2 == 0)){
+                newArr.push(str[i]+"-")
+            }else{
+                newArr.push(str[i])
+            }
+        }
+        console.log(newArr.join(""));
+    }
+
+    insertDash(125468)
+
+    //Write a JavaScript program to find the most frequent item in an array.
+    //[ -3, 8, 7, 6, 5, -4, 3, 2, 1 ];
+    function sortArr(arr){
+        let arr1 = [...arr];
+        let max = 0;
+        let min = arr1[0];
+        let arr2 = [];
+        for(let i = 0; i < arr1.length; i++){
+            if(arr1[i] > max ){
+                max = arr[i]
+            }
+        }
+        for(let i = 0; i < arr1.length; i++){
+            for(let j = 0; j < arr1.length; j++){
+                if((arr1[j] !== "s") && min > arr[j]){
+                    min = arr[j];
+                    inx = j;
+                }
+            }
+            arr2[i] = min;
+            arr1[inx] = "s";
+            min = max;
+        }
+        console.log(arr2)
+
+    }
+    sortArr([ -3, 8, 7, 6, 5, -4, 3, 2, 1 ])
+
+</script>
+</body>
+</html>

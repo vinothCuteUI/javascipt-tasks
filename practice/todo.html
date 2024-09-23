@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>ToDo</title>
+	<style>
+		.hide-btn{
+			display: none;
+		}
+		.active-btn{
+			display: inline-block;
+		}
+	</style>
+</head>
+<body>
+
+	<div>
+		<input type="text" id="todo-inpt" />
+		<button id="add-btn">Add</button>
+		<button id="update-btn" class="hide-btn">Update</button>
+	</div>
+
+	<div id="user-container">
+		<!-- <div class="user-item">
+			<h1>Vinoth</h1>
+			<div class="action">
+				<button>Edit</button>
+				<button>Delete</button>
+			</div>
+		</div> -->
+	</div>
+
+<script type="text/javascript">
+	let addBtn = document.getElementById("add-btn");
+	let updateBtn = document.getElementById("update-btn");
+	let todoInpt = document.getElementById("todo-inpt");
+	let userContainer = document.getElementById("user-container");
+
+	let userData = [];
+
+	function addUser(){
+		let createData = {};
+		
+		createData.id = userData.length+1;
+		createData.username = todoInpt.value;
+		//createData = {id:1, username: "vinoth"}
+
+		userData.push(createData);
+		todoInpt.value = "";
+		createData = {};
+		console.log(userData);
+		showUsers(userData);
+	}
+
+	addBtn.addEventListener("click", addUser);
+
+	//show Users
+
+	function showUsers(userObj){
+		userContainer.innerHTML = "";
+		userObj.forEach(function(elm, indx){
+			let userItem = document.createElement("div");
+			let h1Tag = document.createElement("h1");
+			let actionTag = document.createElement("div");
+			let btnEdit = document.createElement("button");
+			let btnDelete = document.createElement("button");
+
+			h1Tag.innerText = elm.username;
+			btnEdit.innerText = "Edit";
+			btnDelete.innerText = "Delete";
+
+			btnDelete.onclick = deleteUser.bind(null, elm.id);
+			btnEdit.onclick = editUser.bind(null, elm.id);
+
+			actionTag.append(btnEdit, btnDelete);
+			userItem.append(h1Tag, actionTag);
+
+			userContainer.appendChild(userItem);
+		})
+	}
+
+	function deleteUser(id){
+		let updateData = userData.filter(function(item){
+			return item.id !== id;
+		})
+		userData = updateData;
+		console.log(userData);
+		showUsers(userData);
+	}
+
+	function editUser(id){
+		let findUser = userData.find(function(item){
+			return item.id === id;
+		})
+		todoInpt.value = findUser.username;
+		addBtn.className = "hide-btn";
+		updateBtn.className = "active-btn";
+		updateBtn.onclick = updateUser.bind(null, id);
+	}
+
+
+	function updateUser(id){
+		let updateData = userData.map(function(item){
+			if(item.id === id){
+				item.username = todoInpt.value;
+			}
+			return item;
+		})
+		userData = updateData;
+		showUsers(userData);
+		todoInpt.value = "";
+		addBtn.className = "active-btn";
+		updateBtn.className = "hide-btn";
+
+		
+	}
+
+</script>
+</body>
+</html>

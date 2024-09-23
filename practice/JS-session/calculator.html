@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Calculator</title>
+	<style>
+		*{
+			margin: 0;
+			box-sizing: border-box;
+		}
+		.cals-box{
+			width: 250px;
+			padding: 10px;
+			border:solid 1px #ccc;
+		}
+		.cals-input input{
+			width: 100%;
+			height: 35px;
+			padding: 5px 10px;
+			margin-bottom: 20px;
+		}
+		.cals-btns{
+			display: flex;
+		    flex-wrap: wrap;
+		    gap: 5px 2px;
+		    justify-content: space-between;
+		}
+		.btns{
+			width: 24%;
+			flex-grow: 1;
+		}
+		.btn-equal{
+			width: 74%;
+		}
+	</style>	
+</head>
+<body>
+
+	<div class="cals-box">
+		<div class="cals-input">
+			<input type="text" id="inpt-field" />
+		</div>
+		<div class="cals-btns">
+			<button class="btns" onclick="clearInpt()">CL</button>
+			<button class="btns" onclick="deleteInpt()">DEL</button>
+			<button class="btns" onclick="displayCals('%')">%</button>
+			<button class="btns" onclick="displayCals('/')">/</button>
+			<button class="btns" onclick="displayCals('7')">7</button>
+			<button class="btns" onclick="displayCals('8')">8</button>
+			<button class="btns" onclick="displayCals('9')">9</button>
+			<button class="btns" onclick="displayCals('*')">*</button>
+			<button class="btns" onclick="displayCals('4')">4</button>
+			<button class="btns" onclick="displayCals('5')">5</button>
+			<button class="btns" onclick="displayCals('6')">6</button>
+			<button class="btns" onclick="displayCals('-')">-</button>
+			<button class="btns" onclick="displayCals('1')">1</button>
+			<button class="btns" onclick="displayCals('2')">2</button>
+			<button class="btns" onclick="displayCals('3')">3</button>
+			<button class="btns" onclick="displayCals('+')">+</button>
+			<button class="btns" onclick="displayCals('0')">0</button>
+			<button class="btns btn-equal" onclick="calculate()">=</button>
+		</div>
+	</div>
+<script>
+	let caslInpt = document.getElementById("inpt-field");
+	function displayCals(num){
+		caslInpt.value += num;
+	}
+	function calculate(){
+		caslInpt.value = cals(caslInpt.value);
+	}
+
+	function cals(fn){
+		return new Function('return ' + fn)();
+	}
+	function deleteInpt(){
+		caslInpt.value = caslInpt.value.slice(0, -1);
+	}
+	function clearInpt(){
+		caslInpt.value = " ";
+	}
+
+</script>
+</body>
+</html>

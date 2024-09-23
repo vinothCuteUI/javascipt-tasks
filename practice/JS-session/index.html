@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Javascript</title>
+	<link rel="stylesheet" href="css/font-awesome.min.css">
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		
+	</style>
+</head>
+<body>
+
+<div id="demo"></div>
+
+<script type="text/javascript">
+	let data = [
+		{id: 1, productName: "Product 1", price:1000, qty:0},
+		{id: 2, productName: "Product 2", price:2000, qty:0},
+		{id: 3, productName: "Product 3", price:3000, qty:0}
+	]
+
+	let cartItem = [];
+	document.getElementById("demo").innerText = JSON.stringify(data)
+	
+	const addCart = (req)=> {
+		
+		let res = cartItem.find(item => item.id === req);
+		if(res){
+			//ES5
+			// let oldCart = cartItem.map((item)=> {
+			// 	if(item.id === req){
+			// 		item.qty += 1;
+			// 		return item; 
+			// 	}else return item;
+			// })
+			// cartItem = oldCart;
+			//ES6
+			cartItem.map((item)=> {
+				if(item.id === req){
+					return {
+							...item,
+							qty: item.qty += 1
+						}; 
+				}else return item;
+			})
+		}else {
+			let newCart = data.find(item => item.id === req);
+			newCart.qty += 1;
+			cartItem.push(newCart);
+		}
+
+		console.log(cartItem);
+	}
+
+	class Main {
+		constructor(str){
+			this.name = str
+		}
+		getFun(){
+			console.log(this.name);
+		}
+	} 
+	
+
+	//call child 
+	class ChilElm extends Main{
+		constructor(str){
+			super(str)
+		}
+	}
+	let getMain = new ChilElm("React");
+	getMain.getFun();
+
+
+
+//password show eye
+// const togglePassword = document.querySelector('#togglePassword');
+//   const password = document.querySelector('#id_password');
+
+//   togglePassword.addEventListener('click', function (e) {
+//     // toggle the type attribute
+//     const type = password.getAttribute('type') === 'password' ? 'text' : 'password';
+//     password.setAttribute('type', type);
+//     // toggle the eye slash icon
+//     this.classList.toggle('fa-eye-slash');
+// });
+
+</script>
+</body>
+</html>

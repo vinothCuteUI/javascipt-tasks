@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Accordion</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+		}
+		.container{
+			width: 1140px;
+			margin: 0 auto;
+			padding: 0 15px;
+		}
+		.accordion-header{
+			border:solid 1px #ccc;
+			padding: 10px 15px;
+			border-top-left-radius: 5px;
+			border-top-right-radius: 5px;
+		}
+
+		.accordion-content{
+			height: 0;
+			overflow: hidden;
+			transition: all 0.5s ease;
+		}
+		.accordion-text{
+			border-width: 0 1px 1px 1px;
+			border-style: solid ;
+			border-color: #ccc;
+			padding: 10px 15px;
+			border-bottom-left-radius: 5px;
+			border-bottom-right-radius: 5px;
+		}
+		
+	</style>
+</head>
+<body>
+	<div class="container">
+		<!-- Accortion -->
+		<div class="accordion-items">
+			<div class="accordion-header">
+				<h2>Accordion #1</h2>
+			</div>
+			<div class="accordion-content">
+				<div class="accordion-text"><b>Accordion #1</b> This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the .accordion-body, though the transition does limit overflow.</div>
+			</div>
+		</div>
+		<div class="accordion-items">
+			<div class="accordion-header">
+				<h2>Accordion #2</h2>
+			</div>
+			<div class="accordion-content">
+				<div class="accordion-text"><b>Accordion #2</b> This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the .accordion-body, though the transition does limit overflow.</div>
+			</div>
+		</div>
+		<div class="accordion-items">
+			<div class="accordion-header">
+				<h2>Accordion #3</h2>
+			</div>
+			<div class="accordion-content">
+				<div class="accordion-text"><b>Accordion #3</b> This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the .accordion-body, though the transition does limit overflow.</div>
+			</div>
+		</div>
+		<div class="accordion-items">
+			<div class="accordion-header">
+				<h2>Accordion #4</h2>
+			</div>
+			<div class="accordion-content">
+				<div class="accordion-text"><b>Accordion #4</b> This is the second item's accordion body. It is hidden by default, until the collapse plugin adds the appropriate classes that we use to style each element. These classes control the overall appearance, as well as the showing and hiding via CSS transitions. You can modify any of this with custom CSS or overriding our default variables. It's also worth noting that just about any HTML can go within the .accordion-body, though the transition does limit overflow.</div>
+			</div>
+		</div>
+	</div>
+	
+
+
+<script>
+	
+	let accordionHeader = document.getElementsByClassName("accordion-header");
+	let getontent = document.getElementsByClassName("accordion-content");
+
+	for(let i = 0; i < accordionHeader.length; i++){
+		accordionHeader[i].addEventListener("click", function(){
+
+			let getParaent = this.parentNode;
+			let accordionContent = getParaent.getElementsByClassName("accordion-content")[0];
+			let showAccord = getParaent.getElementsByClassName("show")[0];
+			let getTxt = getParaent.getElementsByClassName("accordion-text")[0].offsetHeight;
+			
+			console.log(accordionContent.className)
+			for(let x = 0; x < getontent.length; x++){
+				getontent[x].className = "accordion-content hide"
+				getontent[x].style.height = 0+"px";
+			}
+			if(accordionContent.className === 'accordion-content hide'){
+				accordionContent.className ='accordion-content show'
+				accordionContent.style.height = getTxt+"px"
+			}
+			if(showAccord){
+				accordionContent.className ='accordion-content hide'
+				accordionContent.style.height = 0+"px"
+			}
+			
+		})
+	}
+	
+
+
+
+</script>
+</body>
+</html>

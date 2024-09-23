@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pagination</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            
+        }
+        html{
+            font-size: 14px;
+        }
+        /* Pagination ----------------*/
+        .pagination{
+            padding: 1rem 0;
+        }
+        .page-navbar{
+            display: flex;
+            align-items: center;
+        }
+        .page-nav{
+            padding: 0rem 0.5rem;
+            font-size: 1rem;
+            cursor: pointer;
+            background-color: transparent;
+            border:0;
+            color: #777;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            color: var(--primary-color);
+        }
+        .page-nav i{
+            font-size: 1.5rem;
+        }
+        .page-nav:disabled{
+            color: #777;
+        }
+        .page-list{
+            display: flex;
+            align-items: center;
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .page-list .page-num{
+            font-size: 1rem;
+            background-color: transparent;
+            color: #777;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 0;
+        }
+        .page-list .page-dots{
+            font-size: 1rem;
+            background-color: transparent;
+            color: #777;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            border: 0;
+        }
+        .page-dots img{
+            width: 20px;
+            height: auto;
+        }
+        .page-list .page-num:hover, .page-list .page-num.active{
+            background-color: #8C40D9;
+            color: #fff;
+        }
+        .page-list .page-num.active{
+            pointer-events: none;
+        }
+    </style>
+</head>
+<body>
+    
+    <div class="pagination justify-content-end">
+        <div class="paging">
+            <nav class="page-navbar">
+                <button class="page-nav page-prev" disabled onclick="prevpage()"><i class="fa fa-caret-left" aria-hidden="true"></i> Previous</button>
+                <div class="page-list" id="pagenums"></div>
+                <button class="page-nav page-next" onclick="nexpage()">Next <i class="fa fa-caret-right" aria-hidden="true"></i></button>
+            </nav>
+        </div>
+    </div>
+
+<script>
+    let pagenums = document.getElementById("pagenums");
+
+    let pageItems = [];
+    for(let i = 0; i < 30; i++){
+        pageItems.push(i+1);
+    }
+
+    let page = 1, step = 3, size = pageItems.length;
+    function prevpage(){
+        page--; 
+        if(page < 1){
+            page = 1
+        }
+        swappagenum();
+    }
+
+    function nexpage(){
+        page++;
+        if(page > size){
+            page = size;
+        }
+        swappagenum();
+    }
+
+    function swappagenum(){
+        if(size < step * 2 + 6){
+            pagination(1, size+1, false, false);
+        }else if(page < step * 2 + 1){
+            pagination(1, step * 2 + 4, false, true);
+        }else if(page > size - step * 2){
+            pagination(size - step * 2 - 2, size +1, true, false);
+        }else{
+            pagination(page - step, page + step + 1, true, true);
+        }
+    }
+
+    function pagination(start, end, pgFirst = false, pgLast = false){
+        if(page == size){
+            let btnnext = document.getElementsByClassName("page-next")[0];
+            btnnext.setAttribute("disabled", true);
+        }
+        pagenums.innerHTML = "";
+        if(pgFirst){
+            pagenums.innerHTML = `<button class="page-num" data-num="${page}">1</button><button class="page-dots"><img src="./menu.png" /></button>`
+        }
+        for(let i = start; i < end; i++){
+            pagenums.innerHTML += `<button class="page-num" data-num="${i}">${i}</button>`;
+        }
+        if(pgLast){
+            pagenums.innerHTML += `<button class="page-dots"><img src="./menu.png" /></button><button class="page-num" data-num="${size}">${size}</button>`;
+        }
+        let pgNumBtns = document.getElementsByClassName("page-num");
+        for(let n = 0; n < pgNumBtns.length; n++){
+            if(pgNumBtns[n].innerHTML == page) pgNumBtns[n].className = "page-num active";
+            pgNumBtns[n].addEventListener("click", onpage, false);
+        }
+    }
+
+    function onpage(e){
+        let node = e.target;
+        page = Number(node.dataset.num);
+        swappagenum();
+    }
+
+    swappagenum();
+
+
+
+
+
+
+</script>
+</body>
+</html>

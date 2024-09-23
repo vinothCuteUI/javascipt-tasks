@@ -1,0 +1,19 @@
+$font-color:"#333";
+$font-stack: Arial, sans-serif;
+
+@mixin theme($theme: #333){
+    background-color: $theme;
+    color: #fff;
+}
+body{
+    font-family: $font-stack;
+    color: $font-color;
+    @include theme;
+}
+ul{
+    list-style: none;
+    padding: 0;
+    li{
+        font-size: 20px;
+    }
+}

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+
+<script type="text/javascript">
+	//callback hell
+	// function call4(){
+	// 	return new Promise(function(resolve, reject){
+			
+	// 		setTimeout(function(){
+	// 			resolve("Success call 4..!");
+	// 			// reject("Sorry Call 3 fail...!");
+	// 			console.log('Call 4');
+	// 		}, 2000);
+	// 	})
+		
+	// }
+
+	// function call3(data){
+	// 	console.log('data from call 2', data)
+	// 	return new Promise(function(resolve, reject){
+			
+	// 		setTimeout(function(){
+	// 			resolve("Success call 3..!");
+	// 			// reject("Sorry Call 3 fail...!");
+	// 			console.log('Call 3');
+				
+	// 		}, 3000);
+	// 	})
+	// }
+	// function call2(data){
+	// 	console.log('data from call 1', data)
+	// 	return new Promise(function(resolve, reject){
+			
+	// 		setTimeout(function(){
+	// 			resolve({age: 20});
+	// 			// reject("Sorry process fail...!");
+	// 			console.log('Call 2');
+				
+	// 		}, 1000);
+	// 	})
+		
+	// }
+	// function call1(){
+	// 	return new Promise(function(resolve, reject){
+			
+	// 		setTimeout(function(){
+	// 			resolve({name: "I'm from call 1"});
+	// 			// reject("Sorry process fail...!");
+	// 			console.log('Call 1');
+	// 		}, 4000);
+	// 	})
+		
+	// }
+
+
+	//Call1
+	// call1()
+	// .then((data) => {
+	// 	//Call2
+	// 	call2(data)
+	// 	.then(() => {
+	// 		//Call3
+	// 		call3()
+	// 		.then(() => {
+	// 			//Call4
+	// 			call4()
+	// 			.then(() => {
+					
+	// 			})
+	// 			.catch((err) =>{
+	// 				console.log(err);
+	// 			})
+	// 		})
+	// 		.catch((err) =>{
+	// 			console.log(err);
+	// 		})
+	// 	})
+	// 	.catch((err) =>{
+	// 		console.log(err);
+	// 	})
+
+	// })
+	// .catch((err)=> {
+	// 	console.log(err);
+	// })
+
+	//Promise method 2
+	// call1()
+	// .then(call2)
+	// .then(call3)
+	// .then(call4)
+	// .catch((err)=> {
+	// 	console.log(err);
+	// })
+
+	//Promise All
+	// Promise.all([call1(), call2(), call3(), call4()])
+	// .then(() => {
+		
+	// })
+	// .catch((err)=>{
+	// 	console.log(err)
+	// })
+
+
+	function fun1(){
+		setTimeout(function(){
+			fun2();
+			console.log('Fun 1');
+		}, 3000);
+	}
+
+	function fun2(){
+		setTimeout(function(){
+			fun3();
+			console.log('Fun 2');
+		}, 4000);
+	}
+
+	function fun3(){
+		setTimeout(function(){
+			fun4();
+			console.log('Fun 3');
+		}, 1000);
+	}
+
+	function fun4(){
+		setTimeout(function(){
+			console.log('Fun 4');
+		}, 2000);
+	}
+
+	fun1();
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Es6 javascript</title>
+</head>
+<body>
+
+    <h1 data-user="title1">Title <span>1</span></h1>
+
+    
+<script>
+    const h1Elm = document.querySelector("h1");
+    let arrFlat = [1,2,3,[4,5,[6]],7,[9]];
+    
+    function flattenArr(arr){
+        const flatten = [];
+        for(let i = 0; i< arr.length; i++){
+            if(Array.isArray(arr[i])){
+                for(let x = 0; x < arr[i].length; x++){
+                    flatten.push(arr[i][x])
+                }
+            }else{
+                flatten.push(arr[i])
+            }
+        }
+        console.log(flatten)
+    }
+    flattenArr(arrFlat)
+
+    let test = [56, 55, 53, 51]
+    function findNum(num){
+        const result = [];
+        let sortArr = num.sort((a,b)=> a - b);
+        let main = sortArr[0];
+        let max = sortArr[sortArr.length -1];
+        for(let i = main; i < max; i++){
+            if(!num.includes(i)){
+                result.push(i)
+            }
+        }
+        console.log(result)
+    }
+    findNum([56, 55, 53, 51])
+    findNum([1,2,4,5,6])
+
+
+    function recursionFun(num){
+        if(num == 0){
+            return 1;
+        }
+        return num * recursionFun(num -1);
+    }
+    console.log(recursionFun(4))
+
+    Array.prototype.myReduce = function(callback, initVal){
+        let accInit = initVal;
+        for(let x = 0; x < this.length; x++){
+            if(accInit){
+                accInit = callback(accInit, this[x], x, this);
+            }else{
+                accInit = this[x];
+            }
+        }
+        return accInit;
+    }
+
+    Array.prototype.myMap = function(callback){
+        let mapArr = [];
+        for(let i = 0; i < this.length; i++){
+            mapArr.push(callback(this[i], i, this))
+        }
+        return mapArr;
+    }
+    Array.prototype.myFilter = function(callback){
+        let filterArr = [];
+        for(let i = 0; i < this.length; i++){
+            if(callback(this[i],i,this)){
+                filterArr.push(this[i])
+            }
+        }
+        return filterArr;
+    }
+
+    Array.prototype.myFind = function(callback){
+        let findVal;
+        for(let i = 0; i < this.length; i++){
+            if(callback(this[i], i, this)){
+                findVal = this[i];
+                break;
+            }
+        }
+        return findVal;
+    }
+
+    const newArr = [2, 5, 9, 4, 88, 9];
+    const myObj = [
+        {id:1, name:"vinoth", batch:"FED01"},
+        {id:2, name:"sankar", batch:"FED02"},
+        {id:3, name:"sathis", batch:"FED01"}
+    ]
+    let filterArr = newArr.myFilter(function(num){ return num % 2 == 0})
+    let findArr = myObj.myFind(function(elm){ return elm.id == 2})
+    let mapArr = newArr.myMap(function(num){ return num * 2})
+    let sumNum = newArr.myReduce(function(acc, elm, i){
+        return acc + elm
+    })
+    // console.log("Filter: ", filterArr)
+    // console.log("Map: ", mapArr)
+    // console.log("Reduce: ", sumNum);
+    console.log("Find: ", findArr);
+
+    function range(x, y){
+
+    }
+
+
+    var array = [-1, 2, 5, 6, 9, -1, 6, 5, -1, 3];
+    function nonRepElm(arr){
+        let l = arr.length;
+        let result = [];
+        for(let i = 0; i < l; i++){
+            for(let j = 0; j < l; j++){
+                if(arr[i] == arr[j] && i != j){
+                    break;
+                }
+                if(j == l -1){
+                    result.push(arr[i])
+                }
+            }
+        }
+        console.log(result)
+    }
+    nonRepElm(array)
+
+    function isPalindrome(txt){
+       
+        if(txt.length > 1){
+
+            if(txt[0] == txt[txt.length -1]){
+                return isPalindrome(txt.slice(1, -1));
+            }else{
+                return false;
+            }
+        }else{
+            return true;
+        }
+       
+        
+        // if(txt.length > 1){
+        //     let y = txt.length -1;
+        //     for(let x = 0; x < txt.length / 2; x++){
+        //         if(txt[x] !== txt[y]){
+        //             return false;
+        //         }
+        //         y--;
+        //     }
+        //     return true;
+        // }else{
+        //     return true;
+        // }
+    }
+
+    console.log(isPalindrome("madam") ? "Is palindrome" : "Is not palindrome");
+
+    function multiply(num){
+        let x = num;
+        return function(n){
+            return x * n;
+        }
+    }
+
+    console.log(multiply(2)(2))
+
+    let sample = [
+        {car:"tiago",brand:"tata"},
+        {car:"etios",brand:"toyota"},
+        {car:"zeltos",brand:"kia"},
+        {car:"altroz",brand:"tata"}
+    ]
+
+    const brandByCar = sample.reduce((acc, val)=>{
+        if(!acc[val.brand]){
+            acc[val.brand] = [];
+        }
+        acc[val.brand].push(val.car);
+        return acc;
+    }, {})
+    console.log(brandByCar)
+    let x = 10;
+    function localScope(x){
+        console.log(x)
+        console.log(x * 2)
+    }
+
+    localScope(10);
+
+
+    function recursionArr(x, y, setAtt = []){
+        if(x >= y -1){
+            return setAtt;
+        }else{
+            setAtt.push(x +1);
+            return recursionArr(x+1, y, setAtt)
+        }
+      
+    }
+    console.log(recursionArr(2, 6));
+
+    function user(street, city){
+      
+         console.log(`Name: ${this.name} , age: ${this.age}  Street: ${street}, City: ${city} `);
+        
+    }
+    const userObj = {
+        name: "Sankar",
+        age: 32
+    }
+  
+    user.call(userObj, "Tambaram", "Chennai");
+
+
+    //Write code to invert the tree, move left nodes to right and vice-versa
+    const tree = {
+    value: 1,
+    left: {
+        value: 2,
+        left: { value: 4 },
+        right: { value: 5 },
+    },
+    right: {
+        value: 3,
+        left: { value: 6 },
+        right: { value: 7 },
+    },
+    };
+
+    function moveInvert(obj){
+        let newObj = {};
+        if(obj){
+            newObj.value = obj.value;
+            if(obj.right){
+                newObj.left = moveInvert(obj.right);
+            }
+            if(obj.left){
+                newObj.right = moveInvert(obj.left);
+            }
+        
+        }
+        return newObj;
+    
+
+    }
+    console.log(moveInvert(tree))
+
+
+// Array.prototype.only = function(arr){
+//     let myArr = [];
+//     this.forEach(function(elm, i){
+//         if(arr.sort().includes(i)){
+//             myArr.push(elm)
+//         }
+//     })
+//     return myArr;
+// }
+
+// var array = ['a', 'b', 'c', 'd', 'e'];
+// array2 = array.only([3, 0]);
+// console.log(array2)
+// // at this point array2 should be ['a', 'd']
+
+    function PersonObj(){
+        this.name = "Vinoth";
+    }
+    PersonObj.prototype.myFun = function(){
+        console.log(this.name)
+    }
+    const person = new PersonObj();
+    console.log(person)
+    
+
+
+   
+</script>
+</body>
+</html>

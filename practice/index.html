@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Js</title>
+	<!-- <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css.map"> -->
+  <link rel="stylesheet" href="./css/reset.css">
+  <link rel="stylesheet" href="./css/style.css">
+</head>
+<body>
+
+	<form class="login-form">
+		<h2>Login</h2>
+		<div class="form-group">
+			<input type="email" name="email" placeholder="Enter your Email" id="email" class="form-control" required>
+			<p class="error-msg">Please enter your email</p>
+			<p class="err-email">Please enter valid email</p>
+		</div>
+		<div class="form-group">
+			<input type="password" name="password" placeholder="Enter your password" class="form-control">
+			<p class="error-msg">Please enter your password</p>
+		</div>
+		<div class="msg">
+			Login Successfully...
+		</div>
+		<div class="action-btns">
+			<button id="login-btn" >Login</button>
+		</div>
+	</form>
+
+
+
+<!-- <script type="text/javascript">
+		let usersData = [
+			{
+				id:"12234",
+				name:"Vinoth",
+				email:"kvinothkanna28@gmail.com",
+				password:"Vino3456"		
+			},
+			{
+				id:"12235",
+				name:"Vel",
+				email:"vel@gmail.com",
+				password:"Vel@45678"		
+			}
+		]
+		let loginBtn = document.getElementById("login-btn");
+		let msg = document.getElementsByClassName("msg");
+		let formInput = document.getElementsByClassName("form-control");
+		let emailInpt = document.getElementById("email");
+		let emailMsg = document.getElementsByClassName("err-email");
+
+		loginBtn.addEventListener("click", loginFun.bind(null))
+
+		function loginFun(event){
+			event.preventDefault();
+			let isValid = true;
+
+			for(let i = 0; i < formInput.length; i++){
+
+				let pNode = formInput[i].parentNode;
+				let msgTag = pNode.getElementsByClassName("error-msg")[0];
+				
+				if(formInput[i].value === ""){
+					msgTag.classList.add("invalid-inpt");
+					isValid = false;
+				}else{
+					msgTag.classList.remove("invalid-inpt");
+					console.log("true");
+				}
+			
+			}
+
+			//isValid = true
+			if(isValid){
+				if(/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(emailInpt.value)){
+					// console.log("Email ID id valid")
+					msg[0].classList.add("active-msg");
+					
+
+				}else {
+					emailMsg[0].classList.add("invalid-inpt");
+					console.log("Enter invalid email")
+				}
+			}
+
+		}
+
+</script> -->
+
+<!-- <script src="./js-class-obj.js"></script> -->
+<script>
+	
+	let obj = {
+		name:"vinoth",
+		getFun: function(){
+			console.log(this.name);
+		}
+	}
+
+	function funName(){
+		// this.name = name;
+		console.log(this);
+	}
+
+	let objFun = funName();
+	// console.log(objFun())
+
+	let greet = {
+		name:"Prodcut 1",
+		price: 1000,
+		getFun: function(qty){
+			console.log(this.name, this.price, qty);
+		}
+	}
+
+	let setObj = {
+		name: "Item 1",
+		price: 2000
+	}
+
+
+	// greet.getFun.call(setObj, 1);
+	// greet.getFun.apply(setObj, [2]);
+	// let getFun = greet.getFun.bind(setObj, 3);
+	// getFun();
+	// // prod.getFun();
+	// let [a, b] = [10, "this"];
+	// let newObj = {name: "Vinoth", age:31};
+	// let {name: x, age: y} = newObj;
+	// console.log(a, b);
+	// console.log(x, y);
+
+	
+	
+	class DispatchObj{
+		constructor(current = null){
+			this.current = current
+		}
+		get state(){
+			return this.current;
+		}
+		set useState(a){
+			this.current = a;
+		}
+	}
+	// let dispatchObj = new DispatchObj();
+	// dispatchObj.useState = "vino"
+	// console.log(dispatchObj.state)
+
+	function useState(initial){
+		let dispatchObj = new DispatchObj(initial);
+		
+		var {current: state, useState: setState} = dispatchObj;
+		function updateState(a){
+			setState = a;
+			console.log(a)
+			return useState(a);
+		}
+		return [state, updateState];
+	}
+	
+	let [getData, setData] = useState("Hi")
+	console.log(getData)
+	setData("Vino")
+	console.log(getData)
+
+</script>
+</body>
+</html>

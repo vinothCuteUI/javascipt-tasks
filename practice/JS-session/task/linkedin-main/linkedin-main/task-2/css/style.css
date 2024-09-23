@@ -1,0 +1,10 @@
+*{
+	margin:o;
+	padding:0;
+	box-sizing:border-box;
+}
+.align-center{
+	display:flex;
+	justify-content:center;
+	align-items:center;
+}

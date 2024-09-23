@@ -1,0 +1,48 @@
+body{
+	font-family: Arial, sans-serif;
+}
+.login-form{
+	border:solid 1px #ccc;
+	padding: 20px 25px;
+	border-radius: 5px;
+	margin: 20px auto 0;
+	width: 300px;
+}
+.login-form h2{
+	margin-bottom: 10px;
+}
+.form-group{
+	margin-bottom: 15px;
+}
+.form-control{
+	border:solid 1px #ccc;
+	border-radius: 5px;
+	height: 40px;
+	padding: 10px;
+	width: 100%;
+}
+
+#login-btn{
+	border:solid 1px blue;
+	background-color: blue;
+	color: #fff;
+	padding: 8px 15px;
+	text-transform: uppercase;
+	cursor: pointer;
+}
+.msg{
+	display: none;
+	color: green;
+}
+.msg.active-msg{
+	display: block;
+}
+
+
+.error-msg, .err-email{
+	color: red;
+	display: none;
+}
+.invalid-inpt{
+	display: block !important;
+}

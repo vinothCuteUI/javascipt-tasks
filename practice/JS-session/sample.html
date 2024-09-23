@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+	<style>
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: "Arial";
+		}
+		.container{
+			width: 1320px;
+			margin: 0 auto;
+			padding: 0 15px;
+		}
+		#cars{
+			display: flex;
+		    flex-wrap: wrap;
+		    gap: 25px;
+		    margin-top: 30px;
+		    /*justify-content: center;*/
+		}
+		.car-items {
+		    width: 30.33%;
+		    box-shadow: 0 0 5px #ccc;
+		    padding: 10px;
+		}
+		.car-img{
+			height: 250px;
+    		background-size: cover;
+    		background-repeat: no-repeat;
+    		background-position: center;
+		}
+		.car-items h3{
+			margin: 10px 0;
+		}
+		.car-items span{
+			margin-right: 5px;
+		}
+		.car-items p{
+			margin: 10px 0;
+		}
+
+		.top-header{
+			padding: 10px 15px;
+			box-shadow: 0 0 5px #ccc;
+
+		}
+		.qtysect{
+			display: flex;
+
+		}
+		.qtysect .qtybtn{
+			padding: 3px 15px;
+		
+		}
+		.qtysect span{
+			min-width: 30px;
+		    text-align: center;
+		    line-height: 24px;
+
+		}
+		
+	</style>
+</head>
+<body>
+	<header class="top-header">
+		<div class="container">
+			<div class="filter-cars">
+				<label>Select Car</label>
+				<select id="filter-option">
+					<option value="All">All</option>
+					<option value="Hyundai">Hyundai</option>
+					<option value="Suzuki">Suzuki</option>
+					<option value="Tata">Tata</option>
+				</select>
+			</div>
+		</div>
+	</header>
+<div class="container">
+	
+	<div id="cars">
+		
+	</div>
+</div>
+
+
+<script type="text/javascript">
+	var carsData = [
+		{
+			id:"car001",
+			brand:"Hyundai",
+			model:"i20",
+			year:2020,
+			price:700000,
+			type:"Luxury car",
+			carPic: "images/i20.jpg",
+			qty:0
+		},
+		{
+			id:"car002",
+			brand:"Hyundai",
+			model:"i10",
+			year:2022,
+			price:800000,
+			type:"Luxury car",
+			carPic: "images/i10-nios.jpg",
+			qty:0
+		},
+		{
+			id:"car003",
+			brand:"Suzuki",
+			model:"Sift",
+			year:2020,
+			price:7500000,
+			type:"Luxury car",
+			carPic: "images/swift.jpeg",
+			qty:0
+		},
+		{
+			id:"car004",
+			brand:"Suzuki",
+			model:"Baleno",
+			year:2020,
+			price:7500000,
+			type:"Luxury car",
+			carPic: "images/baleno.jpg",
+			qty:0
+		},
+		{
+			id:"car005",
+			brand:"Tata",
+			model:"Safari",
+			year:2020,
+			price:1500000,
+			type:"Luxury car",
+			carPic: "images/safari.jpeg",
+			qty:0
+		},
+		{
+			id:"car006",
+			brand:"Tata",
+			model:"Nexon",
+			year:2020,
+			price:1400000,
+			type:"Luxury car",
+			carPic: "images/nexon.jpg",
+			qty:0
+		}
+
+	];
+
+	
+
+	let userData = [
+		{
+			id:101,
+			userName:"User 1",
+			email:"sample12@gmail.com",
+			password:"sample@123"
+		},
+		{
+			id:102,
+			userName:"User 2",
+			email:"sample123@gmail.com",
+			password:"sample@124"
+		},
+		{
+			id:103,
+			userName:"User 3",
+			email:"sample1234@gmail.com",
+			password:"sample@125"
+		},
+
+		{
+			id:104,
+			userName:"User 4",
+			email:"sample1235@gmail.com",
+			password:"sample@126"
+		}
+	]
+	function findUserData(email, pas){
+		let findUser = userData.find((user)=> user.email === email);
+		console.log(findUser);
+		if(findUser){
+			console.log('User find');
+			if(pas === findUser.password){
+				localStorage.setItem("userId", findUser.id);
+				localStorage.setItem("userData", JSON.stringify(userData));
+			}
+		}else{
+			console.log("User Not find");
+		}
+	}
+	// findUserData('sample123@gmail.com', 'sample@124');
+	
+
+	function logOut(){
+		localStorage.removeItem("userId");
+		localStorage.removeItem("userData");
+	}
+
+
+
+
+	let carsElm = document.getElementById("cars");
+
+	//Create DOM object
+	function onLoadData(data){
+		carsElm.innerHTML = "";
+		data.forEach(function(obj, i){
+
+			let carItems = `<div class="car-items">
+								<div class="car-img" style="background-image: url(${obj.carPic});"></div>
+								<div class="car-details">
+									<h2>${obj.brand} ${obj.model}</h2>
+									<span>${obj.type}</span>
+									<h4>${obj.year}</h4>
+									<p>${obj.price}</p>
+									<div class='qtysect'>
+										<button class='qtybtn' onclick='decreament("${obj.id}")'>-</button><span>${obj.qty}</span><button class='qtybtn' 
+										onclick='increament("${obj.id}")'>+</button>
+									</div>
+								</div>
+							</div>`;
+		
+			carsElm.innerHTML += carItems;
+
+		})
+	}
+	
+	const increament = (id) => {
+		
+		const updateQty = carsData.map((item) =>{
+			if(item.id === id){
+				return {
+					...item,
+					qty:item.qty+=1
+				}
+			}else return item;
+		});
+		
+		onLoadData(updateQty);
+	}
+	const decreament = (id) => {
+		const selectedItem = carsData.find(item => item.id === id);
+		if(selectedItem){
+			if(selectedItem.qty === 1){
+				const removeCart = carsData.filter(item => item.id != id);
+				onLoadData(removeCart);
+			}else{
+				const updateQty = carsData.map((item) =>{
+					if(item.id === id){
+						return {
+							...item,
+							qty:item.qty-=1
+						}
+					}else return item;
+				});
+				onLoadData(updateQty);
+			}
+		}
+		
+		
+		
+	}
+	
+	let filterCars = document.getElementById("filter-option");
+
+	filterCars.addEventListener("change", function(event){
+		let filterCarsData;
+		event.target.value === "All" ? filterCarsData = carsData : filterCarsData = carsData.filter(e => e.brand === event.target.value);
+		onLoadData(filterCarsData);
+	})
+
+	window.load = onLoadData(carsData);
+
+</script>
+</body>
+</html>

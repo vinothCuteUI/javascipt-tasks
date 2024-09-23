@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+	<button id="btn" data-name="btns">Click</button>
+
+<script>
+
+	function fun1(){
+		return new Promise((res, rej)=>{
+			// res("Success...!")
+			rej("Not Success...!")
+		})
+	}
+
+	fun1().then((e)=>{
+		console.log(e);
+	}).catch((e)=>{
+		console.log(e);
+	})
+
+	let num = 20;
+	function getRandomNumb(){
+		let x = Math.floor(Math.random() * num+1);
+		return x;
+	}
+
+	let uniqueNumb = [], randomNum;
+
+	while(uniqueNumb.length < 20){
+		randomNum = getRandomNumb();
+		if(!uniqueNumb.includes(randomNum) && randomNum !== 0){
+			uniqueNumb.push(randomNum);
+		}
+	} 
+	
+	
+	console.log(uniqueNumb);
+
+
+
+	function calsTimeZone(country, val){
+		let newDate = new Date();
+		let getUtc = newDate.getTime()+(newDate.getTimezoneOffset()*60000);
+		let nd = new Date(getUtc+(3600000*val));
+		return country + " " + nd.toLocaleString();
+	}
+
+	console.log(calsTimeZone("argentina", "-3"))
+
+
+	let timeZone = ["00:00", "00:30", "01:00", "01:30", "02:00", "02:30", "03:00", "03:30", "04:00", "04:30", "05:00", "05:30", "06:00", "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30", "10:00", "10:30", "11:00", "11:30", "13:00", "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30", "17:00", "17:30", "18:00", "18:30", "19:00", "19:30", "20:00", "20:30", "21:00", "21:30", "22:00", "22:30", "23:00", "23:30", "24:00", "24:30"]
+	let indTime = "9:00";
+
+	let x = "09:30";
+	let z = x.split(":");
+	if(z[1] === "30"){
+	    let c = (parseFloat(z[0]+".5") + 3.50);
+	    if(parseInt(c) === c){
+	        console.log(c+":00")
+	    }else{
+	        let n = c.toString().split(".")[1];
+	        if( Number(n.split("")[0]) && n < 9){
+	            c = c+"0";
+	            console.log(c)    
+	        }else{
+	            console.log(c) 
+	        } 
+	    }
+	    
+	}
+
+
+	let ctryObj = [
+	    {id:101, country:"SING", hrsDif: 3.5, currentTime:null},
+	    {id:102, country:"AUS", hrsDif: 2.45, currentTime:null},
+	    {id:103, country:"US", hrsDif: 4.5, currentTime:null}
+	];
+
+	function numberFormate(num) {
+	    return num < 9 ? "0"+num : num;
+	}
+	function onGetCntryTime(ind, cty) {
+	    let indTime = ind.split(":");
+	    indTime = Number(indTime[0]+"."+(indTime[1] === "30" ? 5 : 0));
+	    let findHrs = indTime + cty;
+	    if(parseInt(findHrs) === findHrs){
+	        console.log(numberFormate(findHrs)+":00")
+	    }else{
+	        let n = findHrs.toString().split(".");
+	        if(n[1].length === 1){
+	            console.log(numberFormate(n[0])+":"+n[1]+"0");
+	        }else{
+	            console.log(numberFormate(n[0])+":"+n[1]);
+	        }
+	    }
+	}
+
+
+</script>
+</body>
+</html>

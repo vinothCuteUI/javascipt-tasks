@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Date time</title>
+</head>
+<body>
+    
+<script>
+    function getAllDatesInMonth(year, month) {
+        let startDate = new Date(year, month, 1); // month is 0-indexed
+        let endDate = new Date(year, month + 1, 1);
+        
+        let dates = [];
+        while (startDate < endDate) {
+            dates.push(new Date(startDate)); // clone the date object
+            startDate.setDate(startDate.getDate() + 1);
+        }
+
+        return dates;
+    }
+    
+    // Usage example:
+    let datesInFebruary2023 = getAllDatesInMonth(2023, 9);
+    console.log(datesInFebruary2023);
+
+    
+</script>
+</body>
+</html>

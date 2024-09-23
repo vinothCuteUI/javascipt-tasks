@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practies | </title>
+</head>
+<body>
+
+
+    <div class="seatch-container">
+        <input type="text" id="search-inpt" />
+        <p class="txt-cnt" >Html</p>
+        <p class="txt-cnt">CSS</p>
+        <p class="txt-cnt">Javascript</p>
+        <p class="txt-cnt">Node Js</p>
+        <p class="txt-cnt">Java</p>
+        <p class="txt-cnt">C++</p>
+    </div>
+
+
+<script>
+    let searchContainer = document.getElementsByClassName("seatch-container")[0];
+    let txtcnt = document.getElementsByClassName("txt-cnt")[0];
+
+    
+
+    let searchInpt = document.getElementById("search-inpt");
+    searchInpt.addEventListener("keyup", filterData);
+
+    function filterData(e){
+        let searchVal = e.target.value.toLowerCase();
+        let listContent = document.querySelectorAll(".txt-cnt");
+        
+        listContent.forEach((item)=>{
+            let txt = item.textContent;
+            if(txt.toLowerCase().includes(searchVal)){
+                item.style.display = "";
+            }else{
+                item.style.display = "none";
+            }
+        })
+    }
+
+    let channel = {
+        title: "Vinoth",
+        videoTitle:"Javascript",
+        language:["tamil", "malayalam", "telugu"],
+        showData: function(){
+            this.language.forEach(function(obj){
+                console.log(this.videoTitle+" " +obj)
+            }, this)
+        }
+    }
+    channel.showData();
+
+    class User {
+        constructor(name, age){
+            this.name = name;
+            this.age = age;
+        }
+        login() {
+            console.log("Login successfully.! "+" "+this.name);
+        }
+    }
+    // derived class or  class inheritance 
+    class UserOne extends User{
+        constructor(name, age){
+            super(name, age);
+        }
+        message(){
+            console.log("Thank you for support!")
+        }
+        login() {
+            console.log("Hi"+" "+this.name);
+            return this;
+        }
+    }
+    let producer = new UserOne("vinoth", 31);
+    producer.login().message();
+
+    //Hoisting
+
+    x = 10;
+    console.log(x)
+    var x;
+
+    // myFun();
+    function myFun(){
+        console.log("myFun")
+    }
+
+    //callback and callback hell
+    function callbackFun(call1){
+        call1();
+    }
+    function proceedtopay(call2){
+        call2();
+    }
+    function showcart(call3){
+        call3();
+    }
+    callbackFun(function(){
+        console.log("call1")
+
+        proceedtopay(function(){
+             console.log("call2");
+
+             showcart(function(){
+                console.log("call3");
+             })
+
+        })
+    });
+    let s = 1;
+    if(s){
+        var n = 10;
+    }
+    console.log(n);
+
+    function makeFunc() {
+      const name = "Mozilla";
+      function displayName() {
+        console.log(name);
+      }
+      return displayName;
+    }
+
+    const myFunc = makeFunc();
+    myFunc();
+
+    //closure
+    function closureFun(){
+        var str = "Closure";
+        function dynamicFun(){
+            console.log(str, b);
+        }
+        var b = 10;
+        return dynamicFun;
+    }
+    // closureFun();
+
+    var zClosr = closureFun();
+    zClosr();
+
+
+    //Higer order function
+    const originalFunc = () => { return "Hi TCS"};
+    let newFun = originalFunc(10);
+    console.log(newFun)
+    function newOrderFun(fun){
+        console.log(fun());
+    }
+    newOrderFun(originalFunc);
+
+
+
+    //isPalindrome
+    function isPalindrome(str){
+        let s = str.length -1;
+        for(let i = 0; i < str.length/2; i++){
+            if(str[i] != str[s]){
+                return "Is not palindrome";
+            }
+            s--;
+        }
+        return "Is palindrome";
+
+    }
+
+    console.log(isPalindrome("madam")); // Is palindrome
+    console.log(isPalindrome("saas"));// Is palindrome
+    console.log(isPalindrome("recursion")); //Is not palindrome";
+
+    //recursion
+    function recursionFun(rs){
+        if(rs == 1){
+            return rs;
+        }else{
+            return recursionFun(rs - 1) * rs;
+        }
+    }
+
+    console.log(recursionFun(5));
+
+    //array methods
+    let obj = {
+        name:"vinoth",
+        age: 31
+        
+    }
+    let func = function(area, gender){
+            console.log("name: " + this.name + " " + "Age: " + this.age + " from " + area + " Gender " + gender );
+        }
+
+    // let cloneTwo = Object.assign({gender: "Male"}, obj);
+    // let cloneTwo = JSON.parse(JSON.stringify(obj));
+    let cloneTwo = {
+        name:"Sankar",
+        age:32
+    };
+    let cloneThree = {
+        name:"Sathis",
+        age:31
+    };
+    let cloneFoure = {
+        name:"Robert",
+        age:33
+    };
+    
+    let bindFun = func.bind(cloneTwo, "Pallavarm", "Male");
+    bindFun();
+    func.call(cloneThree, "Mannivakkam", "Male");
+    func.apply(cloneFoure, ["Guindy", "Male"]);
+
+    // console.log("Current Object: ", obj) 
+    // console.log("Clone Object: ", cloneTwo) 
+
+    //array methods
+    let arr = [5, 6, 8, 10, 45];
+
+    let mapArr = arr.map((itm)=>{
+        if(itm == 6){
+            itm = 12;
+        }
+        return itm;
+    })
+    console.log(arr);
+    console.log(mapArr);
+    let newArr = arr.reduce((prnum, crt)=>{
+        return prnum;
+    })
+    console.log(newArr);
+
+    let arrInc = "one two length";
+    console.log(arrInc.includes("two"));
+
+    let forArr = []
+
+
+    //Promise
+    function selectProduct(){
+        return new Promise((res, rej)=>{
+            setTimeout(()=>{
+                res("product selected..!");
+            }, 1000)
+        })
+    }
+    function addtocart(){
+        return new Promise((res, rej)=>{
+            setTimeout(()=>{
+                res("product has been added in the cart..!");
+            }, 1500)
+        })
+    }
+    function paynow(){
+        return new Promise((res, rej)=>{
+            setTimeout(()=>{
+                rej("payment failed..!");
+            }, 1000)
+        })
+    }
+    // selectProduct()
+    // .then((val)=>{console.log(val); return addtocart();})
+    // .then((val)=>{console.log(val); return paynow();})
+    // .then((val)=>{console.log(val);})
+    // .catch((err)=>{console.log(err)})
+    Promise.all([selectProduct(), addtocart(), paynow()])
+    .then((val)=> console.log(val))
+    .catch(err => console.log(err))
+
+    //function and arrow
+    function myfun1(){
+        console.log(arguments);
+        console.log(this.n)
+    }
+    myfun1("hello", 40, true);
+    
+    let newArrow = () =>{
+        console.log(this);
+    }
+    newArrow();
+
+
+
+    let arr1 = ["a", 2, "b", 60, 90];
+    let arr2 = [2, 4, "b", "a", 190];
+    let mergeArr = arr1.concat(arr2);
+    let duplicateArr = [];
+    for(let i = 0; i < mergeArr.length; i++){
+        for(let j = i+1; j < mergeArr.length; j++){
+            if(mergeArr[i] == mergeArr[j]){
+                duplicateArr.push(mergeArr[j]);
+            }
+        }
+    }
+    console.log(duplicateArr);
+  
+    var num= 1;
+    num.name = "";
+    console.log(num); //type error
+
+    console.log(x)//undefined
+    var x = 1;
+
+    let ab = 1;
+    console.log(ab)// initialization error
+
+    console.log(typeof(NaN))// number type
+
+    function sample() {
+    var a = 2;
+    if(true) {
+    var a = 3
+    console.log(a);
+    }
+        console.log(a);
+    }
+    
+
+    for(var i=0;i<4;i++){
+        setTimeout(()=>{
+            console.log(i);//
+        },100)
+    }
+
+    function restFun(){
+        let res = arguments;
+        console.log(res[2])
+    }
+
+    restFun(1, 2, 3, 4, 8, 9)
+
+    class CarsObj{
+        constructor(car, brand){
+            this.car = car;
+            this.brand = brand;
+        }
+        set car(newCar){
+            if(newCar != ""){
+                this._car = newCar;
+            }else{
+                console.error("car data should not be empty!")
+            }
+        }
+        set brand(newbrand){
+            if(newbrand != ""){
+                this._brandr = newbrand;
+            }else{
+                console.error("Brand data should not be empty!")
+            }
+        }
+
+        get car(){
+            return this._car;
+        }
+        get brand(){
+            return this._brandr;
+        }
+
+    }
+
+    var carsObj = new CarsObj("Punch", "Tata");
+    console.log(carsObj.car);
+    console.log(carsObj.brand);
+
+
+    //Multiple API calls at one after another
+    const taskUrls = [
+        "https://jsonplaceholder.typicode.com/todos/1",
+        "https://jsonplaceholder.typicode.com/todos/2",
+        "https://jsonplaceholder.typicode.com/todos/3"
+    ]
+    const makeAPICall = async (urlApi)=>{
+        const data = await fetch(urlApi);
+        const res = data.json();
+        return res;
+    }
+    const executeAllApiCall = async (urls)=>{
+        const allPromis = urls.map(makeAPICall);
+        const res = await Promise.all(allPromis);
+        console.log(res);
+    }
+    executeAllApiCall(taskUrls);
+
+    
+</script>
+</body>
+</html>

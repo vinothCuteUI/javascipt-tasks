@@ -1,0 +1,90 @@
+@import url('https://fonts.googleapis.com/css2?family=Aboreto&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+body{
+  font-family: 'Poppins', sans-serif;
+  scroll-behavior:smooth;
+}
+
+header{
+  height: 60px;
+  width: 100vw;
+  position: fixed;
+}
+
+.navbar{
+	display:flex;
+	justify-content: space-between;
+  align-items: center;
+  height: 100%;
+  width: 100%;
+  background-color: #fff;
+  border-bottom: 1px solid whitesmoke;
+}
+
+.nav-logo{
+	width:8rem; 
+	display:grid;
+	place-items :center;
+}
+
+.nav-logo h2 a{
+  text-decoration: none;
+  color: crimson;
+}
+
+.logo-img{
+  display: block;
+	width:100%;
+}
+
+.nav-mid{
+	display:flex;
+	gap: 3rem;
+}
+
+.nav-mid a{
+	text-decoration:none;
+	font-weight: 500;
+	color:black;
+	font-size: 1rem;
+}
+
+.nav-right{
+	display:flex;
+	gap: 3rem;
+	margin-right: 2rem;
+}
+
+.nav-right a{
+	text-decoration:none;
+	font-weight: 500;
+	color:black;
+	font-size:1rem;
+}
+
+section{
+
+  padding-top: 5rem;
+}
+
+
+
+.product-box{
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+.product-img{
+  height: 200px;
+  width: auto;
+  display: flex;
+  justify-content: center;
+}
+
+.product-img img{
+  height: 100%;
+  width: auto;
+  display: block;
+  
+}
+

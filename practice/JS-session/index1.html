@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+
+<h1 id="demo">0</h1>
+<!-- <button onclick="startCount()">Play</button>
+<button onclick="stopTimer()">Push</button>
+<button onclick="resetCount()">Reset</button> -->
+<script>
+
+	// let showNum = document.getElementById("demo");
+	// let count = 0, startTimer;
+	// //Anonymous function expression
+	// const startCount = function(){
+	// 	startTimer = setInterval(function(){
+	// 		count += 1;
+	// 		showNum.innerText = count;
+	// 	}, 1000)
+	// }
+
+	// const stopTimer = function(){
+	// 	clearInterval(startTimer);
+	// }
+
+	// const resetCount = function(){
+	// 	if(confirm("Do you want to reset..?")){
+	// 		count = 0;
+	// 		showNum.innerText = count;
+	// 		clearInterval(startTimer);
+	// 	}
+	// }
+	
+	// //Function Declaration
+	// function myFun(){
+	// 	console.log('Function declare')
+	// }
+
+	// //myFun();//Invoked or call
+	
+	// // function Expression with name
+	// const myFun2 = function myfun(){
+	// 	console.log('Function Name expression');
+	// };
+	
+	// //Anonymous function Expression
+	// const myFun3 = function(){
+	// 	console.log('Function Anonymous expression');
+	// };
+
+	// //Self invok function
+	// // (function(){
+	// // 	console.log('Function self invoke');
+	// // })();
+
+
+	// //Functions Can Be Used as Values
+	// function myFunReturn(){
+	// 	return 10 + 20;
+	// }
+	// let x = myFunReturn();
+
+	// //Function Parameters and Arguments
+	// function sumFun(a, b){
+	// 	// console.log("Hi " + a + " Welcome back.!");
+	// 	return a + b;
+	// }	
+	// function multplyFun(a, b){
+	// 	// console.log("Hi " + a + " Welcome back.!");
+	// 	return a * b;
+	// }
+	// function devidFun(a, b){
+	// 	// console.log("Hi " + a + " Welcome back.!");
+	// 	return a / b;
+	// }	
+	// let y = devidFun(10, 10);
+	// console.log(y)
+
+	// //Default Parameter Values
+	// function reminderFun(a = 10, b = 2){
+	// 	// console.log("Hi " + a + " Welcome back.!");
+	// 	return a%b;
+	// }	
+	// let z = reminderFun(20, 3);
+	// console.log(z)
+
+	//The Arguments Object
+	// function arguObjec(){
+	// 	console.log(arguments);
+	// }
+	// arguObjec(10, 30, 40, 60, 80)
+
+	//inbuilt function
+	
+	// let setTimeFun = setInterval(function(){
+	// 	console.log('Call interval')
+	// }, 1000);
+	// setTimeout(function(){
+	// 	clearInterval(setTimeFun);
+	// }, 3000);
+	// // clearTimeout();
+	
+	// let storeData1 = prompt("Please fill some data1...!");
+	// let storeData2 = prompt("Please fill some data2...!");
+	// let sumVal = sumFun(Number(storeData1), Number(storeData2));
+	// console.log(sumVal);
+	// let plsConfirm = confirm("Please confirm now...!");
+	// console.log(plsConfirm);
+
+	// parseInt();
+	// Number();
+	// isArray();
+
+	
+	//Array []
+	//Array Iterate
+	//Array method
+	// let arr = [10, 20, 30, 40];
+	//push = add value last index 
+	//pop = remove value at last index
+	//shift = remove value at first index
+	//unshift = add value in first index
+	//splice add value or replace value
+	//slice slice an array and return into neww array 
+	//join method also joins all array elements into a string
+	//split method convert string into an array
+	//filter
+	//find
+	//map
+	//indexOf
+	//every
+	//some if 
+
+	
+	//array
+
+	// let arr = [3, 'a', 'a', 'a', 2, 3, 'a', 3, 'a', 2, 4, 9, 3, 3, 3];
+	// let count = 0, min = 0, item;
+	// for(let i = 0; i < arr.length; i++){
+	// 	// console.log(arr[i]);
+	// 	for(let j = i; j < arr.length; j++){
+	// 		if(arr[i] === arr[j]){
+	// 			count++;
+	// 			if(count > min){
+	// 				min = count;
+	// 				item = arr[i];
+	// 			}
+	// 		}
+	// 	}
+	// 	count = 0;
+	// }
+	
+	// let arr2 =  [ -3, 8, 7, 6, 5, -4, 3, 2, 1 ];
+	// let max, sm, p, inx;
+	// for(let x = 0; x < arr2.length; x++){
+	// 	for(let z = x+1; z < arr2.length; z++){
+	// 		if(arr2[x] > arr2[z]){
+	// 			max = arr2[x];
+	// 			sm = arr2[z];
+	// 			arr2[x] = sm;
+	// 			arr2[z] = max;
+	// 		}
+	// 	}
+	// }
+	// console.log(arr2);
+	
+
+	// function move(arr, val1, val2){
+	// 	let getAr = arr;
+	// 	let n1 = getAr[val1];
+	// 	let n2 = getAr[val2];
+	// 	getAr[val1] = n2;
+	// 	getAr[val2] = n1;
+	// 	console.log(getAr);
+	// }
+
+	// move([10, 20, 30, 40, 50], 0, 2);
+
+	// let arr3 = [1, 2, 2, 3, 4, 4, 5], nar3 = [];
+
+	// for(let s = 0; s < arr3.length; s++){
+	// 	if(arr3[s] !== arr3[s+1]){
+	// 		nar3.push(arr3[s]);
+	// 	}
+	// }
+	// console.log(nar3);
+	// // console.log(item + " " + min);
+
+
+	// let arrJoin = ["Hi", "This", "is", "FED05", "CH"];
+	// let getJoin = arrJoin.join(" ");
+	// console.log(getJoin);
+	// let storeVal = "Hi This is FED05 CH";
+	// let getVal = storeVal.split(" ");
+	// let num = "00121";
+	
+	// console.log(parseInt(num));
+
+
+
+	//Object
+	//Purchase some Product
+	//Brand - Redme/Samsung
+	//Price - 20000 - 30000
+	//color - black/red/blue
+	//Specification - ram/memory/camera/battery
+
+	let mobile1 = {};
+	// console.log(mobile1);
+	mobile1.display = "LCD";
+	mobile1.price = 30000;
+	mobile1.brand = "RedMe";
+	mobile1.color = "Black";
+	mobile1.specification = ["ream", "memory", "camera"];
+	// console.log(mobile1);
+
+	let students1 = {
+		eng:90,
+		tm:78,
+		science:85,
+		maths:65,
+		arr:[20, 10, 30, 40, 60],
+		//method
+		sum: function(){
+			let n = 0;
+			for(let i = 0; i < this.arr.length; i++){
+				n += this.arr[i];
+			}
+			return n;
+		},
+		avg: function(){
+			return this.sum()/4;
+		},
+		cals:function(a, b){
+			return a * b;
+		}
+	}
+	let marks = students1.cals(10, 2); 
+	console.log(marks);
+
+	// console.log(marks)
+	// delete students1["science"];
+
+	// console.log(students1);
+
+
+	// program to check if a number is prime or not
+
+// take input from the user
+const number = parseInt(prompt("Enter a positive number: "));
+let isPrime = true;
+
+// check if number is equal to 1
+if (number === 1) {
+    console.log("1 is neither prime nor composite number.");
+}
+
+// check if number is greater than 1
+else if (number > 1) {
+
+    // looping through 2 to number-1
+    for (let i = 2; i < number; i++) {
+        if (number % i == 0) {
+            isPrime = false;
+            break;
+        }
+    }
+
+    if (isPrime) {
+        console.log(`${number} is a prime number`);
+    } else {
+        console.log(`${number} is a not prime number`);
+    }
+}
+
+// check if number is less than 1
+else {
+    console.log("The number is not a prime number.");
+}
+
+</script>
+</body>
+</html>

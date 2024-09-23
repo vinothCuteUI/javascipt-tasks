@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Form validation</title>
+	<style type="text/css">
+		*{
+			margin: 0;
+			padding: 0;
+			box-sizing: border-box;
+			font-family: Arial, sans-serif;
+		}
+		.user-forms{
+			width: 350px;
+			padding: 10px 15px;
+			border:solid 1px #ccc;
+			border-radius: 5px;
+			margin: 20px auto 0;
+		}
+		.user-forms h2{
+			margin-bottom: 15px;
+		}
+		.form-group{
+			margin-bottom: 20px;
+		}
+
+		.form-control{
+			width: 100%;
+			border-radius: 5px;
+			height: 40px;
+			padding: 10px;
+			border:solid 1px #ccc;
+		}
+		.form-control:focus{
+			outline: 0;
+			border-color: #999;
+		}
+		.password-msg, 
+		.error-msg, .confpassword-msg{
+			color: red;
+			display: none;
+		}
+		.invalid-inpt{
+			display: block !important;
+		}
+		.btn{
+			display: inline-block;
+			border-radius: 5px;
+			border:solid 1px blue;
+			padding: 8px 25px;
+			background-color: blue;
+			color: #fff;
+			font-size: 16px;
+			cursor: pointer;
+		}
+
+	</style>
+</head>
+<body>
+
+	<div class="user-forms">
+		<form onsubmit="onSignUp(event)">
+			<h2>Sign Up Form</h2>
+			<div class="form-group">
+				<input type="text" name="username" placeholder="Enter your Name." class="form-control" />
+				<p class="error-msg">Please Enter your name..!</p>
+			</div>
+			<div class="form-group">
+				<input type="email" name="useremail" placeholder="Enter your Email." class="form-control" />
+				<p class="error-msg">Please Enter your email..!</p>
+			</div>
+			<div class="form-group">
+				<input type="password" name="password" placeholder="Enter your password." id="password" class="form-control" />
+				<p class="error-msg">Please Enter your password..!</p>
+				<p class="password-msg">Password must be greator than 6..!</p>
+			</div>
+			<div class="form-group">
+				<input type="password" name="confpassword" placeholder="Confirm password." id="confirmpassword" class="form-control" />
+				<p class="error-msg">Please Enter your confirm password..!</p>
+				<p class="confpassword-msg">Confirm password not matched with password..!</p>
+			</div>
+			<button type="submit" class="btn">Sign Up</button>
+		</form>
+	</div>
+
+<script>
+	let inputs = document.getElementsByClassName("form-control");
+	let getPaswword = document.getElementById("password");
+	let confPass = document.getElementById("confirmpassword");
+
+	function onSignUp(event){
+		event.preventDefault();
+		
+		let isValid;
+		for(let x = 0; x < inputs.length; x++){
+			isValid = 0;
+			if(inputs[x].value === ""){
+				inputs[x].parentNode.getElementsByTagName("p")[0].classList.add("invalid-inpt");
+				isValid++;
+			}else{
+				inputs[x].parentNode.getElementsByTagName("p")[0].classList.remove("invalid-inpt");
+			}
+		}
+
+		if(isValid == 0){
+			if( getPaswword.value.length < 6){
+				document.getElementsByClassName("password-msg")[0].classList.add("invalid-inpt");
+			}else{
+				document.getElementsByClassName("password-msg")[0].classList.remove("invalid-inpt");
+				if(getPaswword.value !== confPass.value){
+					document.getElementsByClassName("confpassword-msg")[0].classList.add("invalid-inpt");
+				}else{
+					document.getElementsByClassName("confpassword-msg")[0].classList.remove("invalid-inpt");
+				}
+			}
+			
+		}
+		
+	}
+	
+</script>
+</body>
+</html>

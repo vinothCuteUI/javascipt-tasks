@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .otp-inpt{
+            width: 40px;
+            height: 40px;
+            border:solid 1px #ccc;
+            padding: 10px;
+            text-align: center;
+            font-size: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="otp-form">
+        <input type="text" class="otp-inpt" maxlength="1" onpaste="pasteInpt(event)" onkeyup="otpChange(event, 0)">
+        <input type="text" class="otp-inpt" maxlength="1" onpaste="pasteInpt(event)" onkeyup="otpChange(event, 1)">
+        <input type="text" class="otp-inpt" maxlength="1" onpaste="pasteInpt(event)" onkeyup="otpChange(event, 2)">
+        <input type="text" class="otp-inpt" maxlength="1" onpaste="pasteInpt(event)" onkeyup="otpChange(event, 3)">
+    </div>
+
+    <div>
+        <input type="checkbox" value="1" id="checkInpt">
+    </div>
+<script>
+
+    let checkInpt = document.getElementById("checkInpt");
+    checkInpt.addEventListener("change", (e)=>{
+        console.log(e.target.value);
+        console.log(e.target.checked);
+    })
+
+    let otpInpt = document.querySelectorAll(".otp-inpt");
+    
+    function otpChange(e, inx){
+      
+        if(e.keyCode != 8 && inx < otpInpt.length -1){
+            otpInpt[inx+1].focus();
+        }
+        if(e.keyCode === 8){
+            if(inx > 0){
+                otpInpt[inx-1].focus();
+            }
+        }
+
+    }
+    function pasteInpt(e){
+      const data = e.clipboardData.getData("text");
+      let splitData = data.split("");
+      if(data.length !== otpInpt.length){
+        return;
+      }
+      for(let i = 0; i < otpInpt.length; i++){
+        otpInpt[i].value = splitData[i];
+      }
+      otpInpt[otpInpt.length -1].focus();
+
+    }
+    //do while
+    let i = 5;
+    do{
+        console.log("Do while: " + i)
+        i++;
+    }while(i < 5);
+
+    //while
+    let j = 5;
+    while(j < 5){
+        console.log("While: " + j);
+        j++;
+    }
+
+    //for in loop
+    let obj = {name: "vino", age:32};
+    let arrObj = [{name: "vino", age:32}, {name: "sankar", age:33}];
+
+    for(let key in obj){
+        console.log(obj[key]);
+    }
+    for(let x of arrObj){
+        console.log(x.name);
+    }
+
+
+    //string
+    var x = "string";
+
+    var clubs = 
+    [
+        {name : "hsr", isactive : false, members :500 },
+        {name : "whitefiled", isactive : true, members :1500},
+        {name : "itpl", isactive : false, members :500}
+    ]
+
+    let filterData = clubs.filter((item) => item.isactive);
+    console.log(filterData)
+    let arr = [1, 4, 6, 2, 9, 1, 4, 2]
+    function findDuplicateNum(val){
+        let newArr = [];
+        for(let i = 0; i < val.length; i++){
+            for(let j = i+1; j < val.length; j++){
+                if(val[i] === val[j]){
+                    newArr.push(val[i]);
+                }
+            }
+        }
+        console.log(newArr);
+    }
+    findDuplicateNum(arr);
+
+    let str = 121;
+    function ispalindrom(s){
+        let c = String(s);
+        return s == c.split("").reverse().join("");
+    }
+    console.log(ispalindrom(str))
+    
+    
+    //1.Given an unsorted array of integers nums, return the length of the longest consecutive elements sequence. You must write an algorithm that runs in O(n) time. Example 1: Input: nums = [100,4,200,1,3,2]Output: 4 Explanation: The longest consecutive elements sequence is [1, 2, 3, 4]. Therefore its length is 4. Example 2: Input: nums = [0,3,7,2,5,8,4,6,0,1]Output: 9
+    function findConsecutive(arr){
+        var nums = [...arr];
+        var arr = nums.sort(function (a, b) { return a - b; })
+        var v = [];
+        for(let i = 0; i < nums.length; i++){
+            if(v.indexOf(nums[i]) == -1){
+                v.push(nums[i])
+            }
+        }
+        var newArr = [];
+        for(let j = 0; j < v.length; j++){
+            let n = v[j]+1;
+            newArr.push(v[j]);
+            if(v[j+1] !== n){
+                break;
+            }
+        }
+        console.log("Output:" +newArr);
+        console.log("length is: " + newArr.length);
+    }
+    findConsecutive([0,3,7,2,5,8,4,6,0,1]);
+
+
+    //2.Given a string s and an array of strings words. You should add a closed pair of bold tag <b> and </b> to wrap the substrings in s that exist in words. If two such substrings overlap, you should wrap them together with only one pair of closed bold-tag. If two substrings wrapped by bold tags are consecutive, you should combine them. Return s after adding the bold tags. Example 1: Input: s = "abcxyz123", words = ["abc","123"]Output: "<b>abc</b>xyz<b>123</b>"Explanation: The two strings of words are substrings of s as following: "abcxyz123". We add <b> before each substring and </b> after each substring. Example 2: Input: s = "aaabbb", words = ["aa","b"]Output: "<b>aaabbb</b>".
+
+    function fun1(n){
+        return new Promise(function(rs, rj){
+            if(n){
+                rs("Success promise 1")
+            }else{
+                rj("Rejected promise 1")
+            }
+        })    
+    }
+    function fun2(n){
+        return new Promise(function(rs, rj){
+            if(n){
+                rs("Success promise 2")
+            }else{
+                rj("Rejected promise 2")
+            }
+        })    
+    }
+    Promise.all([fun1(1), fun2(0)])
+    .then(rs => console.log(rs))
+    .catch(err => console.log(err))
+
+
+    let obj2 = {
+        title:"Frontend Developer",
+        name:["Vinoth", "Robert", "Chitu", "Praba"],
+        display:function(){
+            this.name.forEach(function(item){
+                console.log(item + " "+this.title)
+            }, this)
+        }
+
+    }
+    obj2.display();
+
+    let arr2 = [{company:"Fab", name: "vinoth"}, {company:"HC", name: "Robert"}, {company:"Fab", name: "Praba"}]
+    arr2.reduce((a, b) =>{
+        if(!a[b.company]){
+            a[b.company] = []
+        }
+        a[b.company].push(b.name);
+        return a 
+    }, {})
+</script>
+</body>
+</html>

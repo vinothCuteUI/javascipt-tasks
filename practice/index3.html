@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Javascript</title>
+</head>
+<body>
+
+<script>
+    let obj = {
+        name:"Vinoth",
+        age:32,
+        display:function(){
+            console.log("Hello "+this.name);
+        }
+    }
+
+    let obj2 = obj.display.call({name:"Sankar"});
+</script>
+</body>
+</html>
